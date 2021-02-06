@@ -9,12 +9,12 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from PyQt5.QtWidgets import QMessageBox
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(624, 339)
+        MainWindow.resize(250, 339)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.UsernameLabel = QtWidgets.QLabel(self.centralwidget)
@@ -88,14 +88,19 @@ class Ui_MainWindow(object):
 
     def Check(self):
 
-        if self.Uesrname.text() == "DavidDiamond" and self.Password.text() == "davidjack7":
+        if self.Uesrname.text() == "test" and self.Password.text() == "test":
             app.processEvents()
-            self.Correct.show()
-            self.Wrong.hide()
+            self.ShowMessage("اطلاع","نام کاربري و رمز عبور شما درست است",QMessageBox.Information)
         else:
             app.processEvents()
-            self.Wrong.show()
-            self.Correct.hide()
+            self.ShowMessage("هشدار","رمز و يا نام کاربري شما نادرست است",QMessageBox.Critical)
+
+    def ShowMessage(self,title,message,icon):
+        msg = QMessageBox()
+        msg.setWindowTitle(title)
+        msg.setText(message)
+        msg.setIcon(icon)
+        x = msg.exec_()
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
